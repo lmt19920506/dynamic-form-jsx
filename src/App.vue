@@ -1,30 +1,31 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <editor v-model="state" />
+  </div>
 </template>
+<script>
+import {ref, provide} from 'vue'
+import data from './data.json'
+import editor from './packages/editor'
+import { registerConfig as config } from './utils/editor-config'
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+export default {
+  components: {
+    editor
+  },
+  setup() {
+    provide('config', config) // 将组件的配置直接传入
+    const state = ref(data)
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    return {
+      state
     }
-  }
+  },
+}
+</script>
+<style lang="scss">
+.app {
+  width: 100%;
+  height: 100%;
 }
 </style>
