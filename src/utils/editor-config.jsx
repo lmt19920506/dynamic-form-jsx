@@ -15,7 +15,7 @@ function createEditorConfig() {
 }
 
 export let registerConfig = createEditorConfig()
-console.log('register config---', registerConfig)
+// console.log('register config---', registerConfig)
 registerConfig.register({
     label: '文本',
     preview: () => '预览文本',

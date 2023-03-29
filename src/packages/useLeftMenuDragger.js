@@ -1,8 +1,8 @@
 export function useLeftMenuDrag(containerRef, data) {
-    console.log('use drag---', data)
+    // console.log('use drag---', data)
     let currentComponent = null
     const dragenter = e => {
-        console.log('dragenter---', e)
+        // console.log('dragenter---', e)
         e.dataTransfer.dropEffect = 'move'
     }
     const dragover = e => {
@@ -10,10 +10,10 @@ export function useLeftMenuDrag(containerRef, data) {
     }
     const dragleave = e => {
         e.dataTransfer.dropEccect = 'none'
-        console.log('drop leave---', e)
+        // console.log('drop leave---', e)
     }
     const drop = e => {
-        console.log('current-component---', currentComponent)
+        // console.log('current-component---', currentComponent)
         console.log('data--', data.value)
 
         let blocks = data.value.blocks // 内部已经渲染的组件
@@ -34,9 +34,9 @@ export function useLeftMenuDrag(containerRef, data) {
         currentComponent = null  // 3.然后在drop的时候清空
     }
     const dragstart = (e, component) => {
-        console.log('drag start---', e)
-        console.log('drag start---', component)
-        console.log('container ref---', containerRef.value)
+        // console.log('drag start---', e)
+        // console.log('drag start---', component)
+        // console.log('container ref---', containerRef.value)
         // dragenter进入元素中，添加一个移动的标识
         // dragover 在目标元素经过，必须要阻止默认行为，否则不能出发drop
         // dragleave 离开元素的时候，需要添加一个禁用表示

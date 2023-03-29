@@ -7,7 +7,7 @@ export default defineComponent({
         }
     },
     setup(props) {
-        console.log('props-editor-block---', props.block)
+        // console.log('props-editor-block---', props.block)
         const blockStyle = computed(() => ({
             top: props.block.top + 'px',
             left: props.block.left + 'px'
@@ -18,16 +18,18 @@ export default defineComponent({
 
         onMounted(() => {
             const {offsetWidth, offsetHeight} = blockRef.value  // 获取从左侧拖过来盒子的宽高
-            console.log('offsetwidth---', offsetWidth)
-            console.log('offsetHeight---', offsetHeight)
+            // console.log('offsetwidth---', offsetWidth)
+            // console.log('offsetHeight---', offsetHeight)
             if (props.block.alignCenter) {  // 说明是拖拽松手的时候才渲染的，其他的默认渲染到页面上的内容不需要居中
                 props.block.left = props.block.left - offsetWidth/2
                 props.block.top = props.block.top - offsetHeight/2
                 props.block.alignCenter = false  // 让渲染后的结果才能居中
             }
+            props.block.width = offsetWidth
+            props.block.height = offsetHeight
         })
 
-        console.log('inject-config---', config)
+        // console.log('inject-config---', config)
         const component = config.componentMap[props.block.key]
         const renderComponent = component.render()
         return () => {
