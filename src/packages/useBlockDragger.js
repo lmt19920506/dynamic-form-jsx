@@ -36,7 +36,7 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
                     lines.x.push({showLeft: ALeft + AWidth, left: ALeft + AWidth - BWidth})  // 右对右
                     lines.x.push({showLeft: ALeft, left: ALeft - BWidth})  // 右对左
                 })
-                // console.log('line---', lines)
+                console.log('line---', lines)
                 return lines
             })()
         }
