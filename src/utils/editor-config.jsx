@@ -36,3 +36,10 @@ registerConfig.register({
     render: () => <ElInput  placeholder="渲染输入框"></ElInput>,
     key: 'input'
 })
+
+registerConfig.register({
+    label: '折线图',
+    preview: () => '折线图',
+    render: () => <bar></bar>,
+    key: 'bar'
+})
