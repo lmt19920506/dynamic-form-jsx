@@ -1,12 +1,14 @@
 import { defineComponent, computed, inject, ref } from "vue";
 import './editor.scss'
 import editorBlock from "./editor-block";
+import transformLayer from './transformLayer.vue'
 import { useLeftMenuDrag } from './useLeftMenuDragger'
 import { useFocus } from './useFocus.js'
 import { useBlockDragger } from "./useBlockDragger";
+import { useCommond } from './useCommond'
 export default defineComponent({
     components: {
-        editorBlock
+        editorBlock, transformLayer
     },
     props: {
         modelValue: {
@@ -47,6 +49,12 @@ export default defineComponent({
 
         // 3.实现拖拽多个元素的功能
 
+    const { commonds } = useCommond(data)
+        const buttons = [
+            { label: '撤销', handler: () => commonds.undo() },
+            { label: '重做', handler: () => commonds.redo() },
+        ]
+
 
 
 
@@ -62,7 +70,15 @@ export default defineComponent({
                     ))
                 }
             </div>
-            <div class="editor-top">菜单栏</div>
+            <div class="editor-top">
+                {
+                    buttons.map((btn, index) => {
+                        return <div class="editor-top-button" onClick={btn.handler}>
+                            <span>{btn.label}</span>
+                        </div>
+                    })
+                }
+            </div>
             <div class="editor-right">属性控制</div>
             <div class="editor-container">
                 {/* 负责产生滚动条 */}

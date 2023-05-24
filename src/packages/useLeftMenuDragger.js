@@ -1,3 +1,5 @@
+import { events } from "./events"
+
 export function useLeftMenuDrag(containerRef, data) {
     // console.log('use drag---', data)
     let currentComponent = null
@@ -46,12 +48,14 @@ export function useLeftMenuDrag(containerRef, data) {
         containerRef.value.addEventListener('dragleave', dragleave)
         containerRef.value.addEventListener('drop', drop)
         currentComponent = component  // 2.开始拖的时候把当前被拖的赋值给currentComponent
+        events.emit('start')  // 发布start   每次拖拽前发布事件
     }
     const dragend = (e) => {  // 移除事件监听
         containerRef.value.removeEventListener('dragenter', dragenter)
         containerRef.value.removeEventListener('dragover', dragover)
         containerRef.value.removeEventListener('dragleave', dragleave)
         containerRef.value.removeEventListener('drop', drop)
+        events.emit('end')  // 每次拖拽后派发事件
     }
 
     return {

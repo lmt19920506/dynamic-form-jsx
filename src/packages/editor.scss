@@ -51,6 +51,21 @@
         height: 80px;
         // background: yellow;
         border: 1px solid pink;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        &-button {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, .3);
+            color: #fff;
+            &+& {  // 相邻元素
+                margin-left: 10px;
+            }
+        }
     }
     &-container {
         // position: absolute;
